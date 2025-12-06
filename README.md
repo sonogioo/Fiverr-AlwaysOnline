@@ -1,4 +1,26 @@
-# 🔥 FIVERR KEEP-ALIVE PRO v4.0
+# 🔥 FIVERR KEEP-ALIVE PRO v4.2
+
+
+## Riepilogo delle modifiche principali:
+
+### **Correzioni:**
+1. **URL corretti** in `background.js` - rimossi gli spazi `%20`
+2. **Sistema di recupero automatico** se la tab viene chiusa
+
+### **Frequenze aumentate:**
+1. **Micro-attività**: ogni 10 secondi (background) / 15 secondi (content)
+2. **Attività principali**: ogni 30 secondi (background) / 45 secondi (content)
+3. **Cambio pagina**: ogni 3 minuti (invece di 15)
+
+### **Miglioramenti:**
+1. **Smooth scrolling** con `behavior: 'smooth'`
+2. **Sequenze di click più realistiche** (mouseover → mousedown → mouseup → click)
+3. **Log migliorati** per debug
+4. **Timeout ridotti** per reattività
+
+Ora l'estensione mantiene attività ultra-frequenti (ogni 10-30 secondi) e cambia pagina ogni 3 minuti come richiesto.
+
+---
 
 Un'estensione per mantenere il tuo stato **Sempre Online** su Fiverr.
 
