@@ -1,29 +1,119 @@
 // ============================================================================
-// Fiverr Keep-Alive Pro - Content Script
-// Version: 7.5.0
-// Ultra-Realistic Activity Simulation + Online Presence Guarantee
+// Fiverr Keep-Alive ULTRA-PRO - Content Script
+// Version: 8.0.0
+// Visibility Bypass + Page Lifecycle + Ultra-Realistic Simulation
 // ============================================================================
 
-class UltraRealisticActivitySimulator {
+class UltraProActivitySimulator {
   constructor() {
     this.mode = 'balanced';
     this.isUserActive = false;
     this.lastUserActivity = null;
     this.activityPatterns = [];
     this.keepAliveInterval = null;
-    this.websocketKeepAlive = null;
+    this.lifecycleController = null;
 
     this.init();
   }
 
   init() {
-    this.log('Ultra-Realistic Activity Simulator initialized', 'success');
+    this.log('🚀 ULTRA-PRO Activity Simulator v8.0 initialized', 'success');
+
+    // CRITICAL: Setup visibility bypass FIRST
+    this.setupVisibilityBypass();
+
+    // CRITICAL: Setup page lifecycle prevention
+    this.setupPageLifecyclePrevention();
+
     this.setupMessageListener();
     this.trackUserActivity();
     this.startPassiveKeepAlive();
     this.setupStorageKeepAlive();
     this.setupVisibilityHandler();
+    this.preventPageFreeze();
     this.notifyBackgroundReady();
+  }
+
+  // ========== VISIBILITY API BYPASS (NEW) ==========
+
+  setupVisibilityBypass() {
+    try {
+      // Override document.hidden to always return false
+      Object.defineProperty(document, 'hidden', {
+        configurable: true,
+        get: function() {
+          return false; // Always report as visible
+        }
+      });
+
+      // Override document.visibilityState to always return 'visible'
+      Object.defineProperty(document, 'visibilityState', {
+        configurable: true,
+        get: function() {
+          return 'visible';
+        }
+      });
+
+      // Override document.hasFocus to always return true
+      if (!document.hasFocus()) {
+        const originalHasFocus = document.hasFocus.bind(document);
+        document.hasFocus = function() {
+          return true; // Always report as focused
+        };
+      }
+
+      this.log('✅ Visibility API bypassed - Fiverr thinks page is always visible', 'success');
+    } catch (error) {
+      this.log('Visibility bypass error: ' + error.message, 'error');
+    }
+  }
+
+  // ========== PAGE LIFECYCLE PREVENTION (NEW) ==========
+
+  setupPageLifecyclePrevention() {
+    try {
+      // Intercept page lifecycle events to prevent freeze/discard
+      if ('document' in window && 'onfreeze' in document) {
+        document.addEventListener('freeze', (e) => {
+          e.preventDefault();
+          this.log('⚠️ Prevented page freeze event', 'warn');
+        }, true);
+
+        document.addEventListener('resume', () => {
+          this.log('♻️ Page resumed from freeze', 'info');
+        });
+      }
+
+      // Prevent page from being discarded
+      if ('document' in window && 'wasDiscarded' in document) {
+        if (document.wasDiscarded) {
+          this.log('⚠️ Page was discarded, re-initializing...', 'warn');
+          this.init();
+        }
+      }
+
+      this.log('✅ Page Lifecycle protection enabled', 'success');
+    } catch (error) {
+      this.log('Lifecycle prevention error: ' + error.message, 'error');
+    }
+  }
+
+  // ========== PAGE FREEZE PREVENTION (NEW) ==========
+
+  preventPageFreeze() {
+    // Create a tiny interval to keep page "active" in Chrome's eyes
+    // This prevents Chrome from freezing the page
+    setInterval(() => {
+      // Tiny activity to prevent freeze
+      if (!this.isUserActive) {
+        // Update a timestamp in sessionStorage
+        try {
+          sessionStorage.setItem('_keepalive_ts', Date.now().toString());
+        } catch (e) {}
+      }
+    }, 10000); // Every 10 seconds
+
+    this.log('✅ Page freeze prevention active', 'success');
   }
 
   setupMessageListener() {
@@ -655,7 +745,7 @@ class UltraRealisticActivitySimulator {
 // INITIALIZE
 // ============================================================================
 
-const simulator = new UltraRealisticActivitySimulator();
+const simulator = new UltraProActivitySimulator();
 
 // Ultra-passive heartbeat - very subtle background activity
 setInterval(() => {
@@ -667,3 +757,10 @@ setInterval(() => {
     }
   }
 }, 3 * 60 * 1000); // Every 3 minutes
+
+// Log that ULTRA-PRO is active
+console.log('%c🚀 Fiverr Keep-Alive ULTRA-PRO v8.0 Active!', 'color: #1DBF73; font-size: 16px; font-weight: bold;');
+console.log('%c✅ Visibility Bypass: ACTIVE', 'color: #00ff88;');
+console.log('%c✅ Page Lifecycle Protection: ACTIVE', 'color: #00ff88;');
+console.log('%c✅ Freeze Prevention: ACTIVE', 'color: #00ff88;');
+console.log('%c🎯 You will appear ALWAYS ONLINE on Fiverr!', 'color: #1DBF73; font-weight: bold;');

@@ -1,11 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Fiverr Keep-Alive Pro",
-  "version": "7.5.0",
-  "description": "Sistema ultra-avanzato per mantenere presenza online garantita su Fiverr con simulazioni ultra-realistiche, multi-layer keep-alive e dashboard professionale",
+  "name": "Fiverr Keep-Alive ULTRA-PRO",
+  "version": "8.0.0",
+  "description": "Sistema ULTRA-AVANZATO con Alarms API, Multi-Tab Redundancy, Visibility Bypass, Page Lifecycle Protection, Cookie Monitoring e Network Keep-Alive per presenza online GARANTITA 24/7",
   "permissions": [
     "storage",
-    "tabs"
+    "tabs",
+    "alarms",
+    "cookies",
+    "webRequest"
   ],
   "host_permissions": [
     "*://*.fiverr.com/*"
